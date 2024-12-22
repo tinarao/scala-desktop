@@ -9,6 +9,11 @@
     "beforeBuildCommand": "yarn build",
     "frontendDist": "../dist"
   },
+  "plugins": {
+    "sql": {
+      "preload": ["sqlite:storage.db"]
+    }
+  },
   "app": {
     "windows": [
       {

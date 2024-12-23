@@ -5,13 +5,13 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from '@/components/ui/dialog';
-import { useForm } from '@tanstack/react-form';
-import { Input } from './ui/input';
-import { Label } from './ui/label';
-import { Button } from './ui/button';
-import { projectsStorage } from '@/logic/database';
-import { useToast } from '@/hooks/use-toast';
+} from "@/components/ui/dialog";
+import { useForm } from "@tanstack/react-form";
+import { Input } from "./ui/input";
+import { Label } from "./ui/label";
+import { Button } from "./ui/button";
+import { projectsStorage } from "@/logic/database";
+import { useToast } from "@/hooks/use-toast";
 
 const CreateProjectDialog = ({ children }: { children: React.ReactNode }) => {
   const { toast } = useToast();
@@ -19,13 +19,13 @@ const CreateProjectDialog = ({ children }: { children: React.ReactNode }) => {
 
   const form = useForm({
     defaultValues: {
-      name: '',
-      description: '',
+      name: "",
+      description: "",
     },
     onSubmit: async ({ value }) => {
       let ok = await projectService.create(value.name, value.description);
       if (!ok) {
-        toast({ title: 'Не удалось создать проект', variant: 'destructive' });
+        toast({ title: "Не удалось создать проект", variant: "destructive" });
         return;
       }
 

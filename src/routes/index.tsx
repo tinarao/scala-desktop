@@ -1,10 +1,9 @@
 import CreateProjectDialog from "@/components/CreateProjectDialog";
-import { Button, buttonVariants } from "@/components/ui/button";
-import { Project, projectsStorage } from "@/logic/database";
+import { Button } from "@/components/ui/button";
+import { Project, projectsStorage } from "@/logic/projects";
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import ProjectCard from "@/components/ProjectCard";
-import { cn } from "../lib/utils";
 import {
   HoverCard,
   HoverCardContent,
@@ -31,7 +30,12 @@ function RouteComponent() {
   return (
     <div className="p-4">
       <div className="flex items-center justify-between">
-        <h1 className="text-4xl font-medium">Проекты</h1>
+        <div>
+          <h1 className="text-4xl font-medium">Проекты</h1>
+          <span className="text-muted-foreground">
+            Всего: {projects.length}
+          </span>
+        </div>
         <div className="flex items-center space-x-1">
           <HoverCard>
             <HoverCardTrigger asChild>

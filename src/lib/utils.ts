@@ -1,4 +1,4 @@
-import { Task } from "@/logic/database";
+import { Task } from "@/logic/projects";
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 

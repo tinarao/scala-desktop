@@ -5,7 +5,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Project } from "@/logic/database";
+import { Project } from "@/logic/projects";
 import { Button } from "./ui/button";
 import { Link } from "@tanstack/react-router";
 

@@ -1,6 +1,6 @@
 import CreateTaskDialog from "@/components/CreateTaskDialog";
 import { Button } from "@/components/ui/button";
-import { Project, projectsStorage } from "@/logic/database";
+import { Project, projectsStorage } from "@/logic/projects";
 import { Link, createFileRoute } from "@tanstack/react-router";
 import { ArrowLeft, Cog, Plus } from "lucide-react";
 import { useEffect, useState } from "react";

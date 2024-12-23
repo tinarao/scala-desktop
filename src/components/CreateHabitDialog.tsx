@@ -12,10 +12,11 @@ import { Label } from "./ui/label";
 import { Button } from "./ui/button";
 import { projectsStorage } from "@/logic/projects";
 import { useToast } from "@/hooks/use-toast";
+import { habitsStorage } from "@/logic/habits";
 
-const CreateProjectDialog = ({ children }: { children: React.ReactNode }) => {
+const CreateHabitDialog = ({ children }: { children: React.ReactNode }) => {
   const { toast } = useToast();
-  const projectService = projectsStorage();
+  const habits = habitsStorage();
 
   const form = useForm({
     defaultValues: {
@@ -23,13 +24,16 @@ const CreateProjectDialog = ({ children }: { children: React.ReactNode }) => {
       description: "",
     },
     onSubmit: async ({ value }) => {
-      let ok = await projectService.create(value.name, value.description);
+      let ok = await habits.create(value.name, value.description);
       if (!ok) {
-        toast({ title: "Не удалось создать проект", variant: "destructive" });
+        toast({
+          title: "Не удалось добавить привычку",
+          variant: "destructive",
+        });
         return;
       }
 
-      toast({ title: `Проект "${value.name}" успешно создан!` });
+      toast({ title: `У вас новая привычка - "${value.name}"!` });
       return;
     },
   });
@@ -39,7 +43,7 @@ const CreateProjectDialog = ({ children }: { children: React.ReactNode }) => {
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Создать проект</DialogTitle>
+          <DialogTitle>Добавить привычку</DialogTitle>
           <DialogDescription>
             This action cannot be undone. This will permanently delete your
             account and remove your data from our servers.
@@ -90,4 +94,4 @@ const CreateProjectDialog = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-export default CreateProjectDialog;
+export default CreateHabitDialog;

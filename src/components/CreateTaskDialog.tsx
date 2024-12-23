@@ -17,7 +17,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "./ui/select";
-import { Priority } from "@/logic/database";
+import { Priority } from "@/logic/projects";
 import { toast } from "@/hooks/use-toast";
 
 const CreateTaskDialog = ({

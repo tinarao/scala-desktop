@@ -11,7 +11,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
-import { projectsStorage } from "@/logic/database";
+import { projectsStorage } from "@/logic/projects";
 import { Link } from "@tanstack/react-router";
 import { ArrowLeft, Grid, ListCollapse, PanelTopInactive } from "lucide-react";
 

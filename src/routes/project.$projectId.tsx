@@ -1,7 +1,8 @@
+import CreateTaskDialog from "@/components/CreateTaskDialog";
 import { Button } from "@/components/ui/button";
 import { Project, projectsStorage } from "@/logic/database";
 import { Link, createFileRoute } from "@tanstack/react-router";
-import { ArrowLeft, Cog } from "lucide-react";
+import { ArrowLeft, Cog, Plus } from "lucide-react";
 import { useEffect, useState } from "react";
 
 export const Route = createFileRoute("/project/$projectId")({
@@ -40,31 +41,45 @@ function RouteComponent() {
 
       <hr className="my-2" />
 
-      <div className="grid flex-1 grid-cols-4 gap-2">
-        <div className="col-span-1 h-full">
-          <div className="flex items-center gap-x-2 rounded-md border p-2 font-medium">
-            <div className="size-4 rounded-full bg-indigo-500"></div>
-            Не начато
+      {project && (
+        <div className="grid flex-1 grid-cols-4 gap-2">
+          <div className="col-span-1 h-full">
+            <div className="flex items-center gap-x-2 rounded-md bg-accent p-2 font-medium">
+              <div className="size-4 rounded-full bg-indigo-500"></div>
+              Не начато
+            </div>
+            <div className="space-y-1 pt-2">
+              <CreateTaskDialog projectId={project.id}>
+                <Button
+                  title="Нажмите, чтобы добавить задачу"
+                  variant="ghost"
+                  className="w-full"
+                >
+                  <Plus />
+                </Button>
+              </CreateTaskDialog>
+            </div>
+          </div>
+          <div className="col-span-1 h-full">
+            <div className="flex items-center gap-x-2 rounded-md bg-accent p-2 font-medium">
+              <div className="size-4 rounded-full bg-yellow-500"></div>В
+              процессе
+            </div>
+          </div>
+          <div className="col-span-1 h-full">
+            <div className="flex items-center gap-x-2 rounded-md bg-accent p-2 font-medium">
+              <div className="size-4 rounded-full bg-green-500"></div>
+              Завершено
+            </div>
+          </div>
+          <div className="col-span-1 h-full">
+            <div className="flex items-center gap-x-2 rounded-md bg-accent p-2 font-medium">
+              <div className="size-4 rounded-full bg-red-500"></div>
+              Заброшено
+            </div>
           </div>
         </div>
-        <div className="col-span-1 h-full">
-          <div className="flex items-center gap-x-2 rounded-md border p-2 font-medium">
-            <div className="size-4 rounded-full bg-yellow-500"></div>В процессе
-          </div>
-        </div>
-        <div className="col-span-1 h-full">
-          <div className="flex items-center gap-x-2 rounded-md border p-2 font-medium">
-            <div className="size-4 rounded-full bg-green-500"></div>
-            Завершено
-          </div>
-        </div>
-        <div className="col-span-1 h-full">
-          <div className="flex items-center gap-x-2 rounded-md border p-2 font-medium">
-            <div className="size-4 rounded-full bg-red-500"></div>
-            Заброшено
-          </div>
-        </div>
-      </div>
+      )}
     </div>
   );
 }

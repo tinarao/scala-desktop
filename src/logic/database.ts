@@ -2,7 +2,7 @@ import Database from "@tauri-apps/plugin-sql";
 import { create } from "zustand";
 import { z } from "zod";
 
-enum Priority {
+export enum Priority {
   Low = "low",
   Medium = "medium",
   High = "high",
@@ -16,22 +16,14 @@ enum Status {
   Scrapped = "scrapped",
 }
 
-// interface Task {
-//   id: number;
-//   projectId: number;
-//   title: string;
-//   description?: string;
-//   priority: Priority;
-//   status: Status;
-// }
 
 export const taskSchema = z.object({
   id: z.number().positive(),
   projectId: z.number().positive(),
   title: z.string(),
   description: z.string().optional().nullable(),
-  priority: z.any(),
-  status: z.any()
+  priority: z.nativeEnum(Priority),
+  status: z.nativeEnum(Status)
 })
 
 export const projectSchema = z.object({
@@ -39,7 +31,7 @@ export const projectSchema = z.object({
   name: z.string(),
   description: z.string().optional().nullable(),
   isNeedToRemind: z.number(),
-  tasks: z.array(z.any()).optional(),
+  tasks: z.array(taskSchema).optional(),
 });
 
 export type Project = z.infer<typeof projectSchema>;

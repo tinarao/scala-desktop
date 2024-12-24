@@ -70,7 +70,7 @@ function RouteComponent() {
       {habits.length === 0 ? (
         <div>net priwychek</div>
       ) : (
-        <div className="space-y-2">
+        <div className="grid gap-2 xl:grid-cols-2">
           {habits.map((h) => (
             <HabitCard key={h.id} habit={h} />
           ))}
